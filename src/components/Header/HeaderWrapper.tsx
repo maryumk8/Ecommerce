@@ -1,9 +1,15 @@
+import {
+  DownOutlined,
+  HeartOutlined,
+  MenuOutlined,
+  ShoppingCartOutlined,
+} from '@ant-design/icons';
+import { Dropdown, Layout, Space } from 'antd';
 import React from 'react';
-import { Flex, Layout } from 'antd';
-import Logo from '../../assets/images/Logo.jpg';
+import type { MenuProps } from 'antd';
 import { Link, useNavigate } from 'react-router-dom';
+import Logo from '../../assets/images/Logo.jpg';
 import SearchWrapper from './SearchWrapper';
-import { HeartOutlined, ShoppingCartOutlined } from '@ant-design/icons';
 
 const { Header, Footer, Sider, Content } = Layout;
 
@@ -15,6 +21,37 @@ const headerStyle: React.CSSProperties = {
   backgroundColor: '#fff',
   display: 'flex',
 };
+
+const items: MenuProps['items'] = [
+  {
+    label: <SearchWrapper />,
+    key: '0',
+  },
+  {
+    type: 'divider',
+  },
+  {
+    label: (
+      <>
+        {' '}
+        <HeartOutlined />
+        Favourites
+      </>
+    ),
+    key: '1',
+  },
+
+  {
+    label: (
+      <>
+        {' '}
+        <ShoppingCartOutlined />
+        Cart
+      </>
+    ),
+    key: '3',
+  },
+];
 
 const HeaderWrapper = () => {
   const navigate = useNavigate();
@@ -39,6 +76,16 @@ const HeaderWrapper = () => {
           <SearchWrapper />
           <HeartOutlined />
           <ShoppingCartOutlined />
+        </div>
+
+        <div className="header-dropdown">
+          <Dropdown menu={{ items }}>
+            <a onClick={(e) => e.preventDefault()}>
+              <Space>
+                <MenuOutlined />
+              </Space>
+            </a>
+          </Dropdown>
         </div>
       </Header>
     </div>
