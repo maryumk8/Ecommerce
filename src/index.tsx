@@ -9,6 +9,8 @@ import { I18nextProvider } from 'react-i18next';
 import { Provider } from 'react-redux';
 import store from './redux/store';
 import { BrowserRouter } from 'react-router-dom';
+import Routing from './routing/Routing';
+import './styles/index.scss';
 
 const root = ReactDOM.createRoot(
   document.getElementById('root') as HTMLElement
@@ -28,7 +30,7 @@ root.render(
     <Provider store={store}>
       <BrowserRouter>
         {' '}
-        <App />
+        <Routing />
       </BrowserRouter>
     </Provider>
   </I18nextProvider>

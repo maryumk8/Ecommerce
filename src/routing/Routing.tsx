@@ -1,7 +1,6 @@
 import React from 'react';
 import { Routes, Route } from 'react-router-dom';
 import { getRoutes } from './Routes';
-import About from '../components/About';
 
 const Routing: React.FC = () => {
   const routes = getRoutes();
