@@ -21,6 +21,10 @@
   }
 }
 
+.anticon-menu {
+  color: black;
+}
+
 .header-btns {
   display: flex;
   align-items: center;
@@ -67,7 +71,42 @@
   font-size: 22px !important;
   cursor: pointer;
 }
+
 .anticon-shopping-cart {
   font-size: 22px !important;
   cursor: pointer;
+}
+
+@media (max-width: $tablet) {
+  .header-btns {
+    gap: 10px;
+    padding-right: 0px !important;
+  }
+  .header-links {
+    gap: 20px !important;
+  }
+  .header-logo {
+    text-align: left !important;
+  }
+  .ant-layout-header {
+    padding-inline: 15px !important;
+  }
+}
+
+@media (max-width: $mid-tablet) {
+  .header-btns {
+    display: none !important;
+  }
+  .header-dropdown {
+    display: block !important;
+  }
+}
+
+.ant-dropdown-menu-title-content {
+  display: flex;
+  align-items: center;
+  gap: 20px;
+}
+.header-dropdown {
+  display: none;
 }
