@@ -1,15 +1,14 @@
 import React from 'react';
 import { Flex, Layout } from 'antd';
 import HeaderWrapper from './Header/HeaderWrapper';
+import Sidebar from './Sidebar';
 
-const { Header, Footer, Sider, Content } = Layout;
+const { Footer, Sider, Content } = Layout;
 
 const contentStyle: React.CSSProperties = {
   textAlign: 'center',
-  //   minHeight: 120,
   lineHeight: '120px',
   color: '#fff',
-  backgroundColor: '#0958d9',
 };
 
 const siderStyle: React.CSSProperties = {
@@ -29,16 +28,14 @@ const footerStyle: React.CSSProperties = {
 const layoutStyle = {
   borderRadius: 8,
   overflow: 'hidden',
-  height: '100vh',
+  minHeight: '100vh',
 };
 
 const LayoutWrapper: React.FC = () => (
   <Layout style={layoutStyle}>
     <HeaderWrapper />
     <Layout>
-      <Sider width="20%" style={siderStyle}>
-        Sider
-      </Sider>
+      <Sidebar />
       <Content style={contentStyle}>Content</Content>
     </Layout>
     <Footer style={footerStyle}>Footer</Footer>

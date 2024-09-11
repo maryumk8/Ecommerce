@@ -1,0 +1,24 @@
+.category {
+  line-height: 2px;
+  padding: 10px 0px;
+  cursor: pointer;
+  &:hover {
+    font-size: 15px;
+  }
+}
+
+.ant-layout-sider-children {
+  padding: 20px 0px !important;
+  height: fit-content !important;
+  margin-left: 110px;
+  text-align: left;
+}
+.ant-layout-sider {
+  height: fit-content;
+}
+
+@media (max-width: $tablet) {
+  .ant-layout-sider-children {
+    margin-left: 16px;
+  }
+}
