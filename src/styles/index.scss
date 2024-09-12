@@ -1,2 +1,13 @@
 @import 'variables';
 @import 'header';
+@import 'sidebar';
+
+.ellipsis {
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+
+body {
+  background-color: white;
+}
