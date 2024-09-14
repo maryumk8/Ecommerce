@@ -1,6 +1,7 @@
 @import 'variables';
 @import 'header';
 @import 'sidebar';
+@import 'products';
 
 .ellipsis {
   white-space: nowrap;
@@ -8,6 +9,6 @@
   text-overflow: ellipsis;
 }
 
-body {
+.ant-layout {
   background-color: white;
 }

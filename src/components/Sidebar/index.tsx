@@ -1,6 +1,7 @@
+import { Layout } from 'antd';
 import React, { useEffect, useState } from 'react';
-import { Flex, Layout } from 'antd';
 import { handleAllCategories } from '../../services/API.ts';
+import { Category } from '../../types/Sidebar';
 
 const { Sider } = Layout;
 
@@ -11,12 +12,6 @@ const siderStyle: React.CSSProperties = {
   backgroundColor: '#fff',
   borderRight: '1px solid rgb(225, 219, 219)',
 };
-
-interface Category {
-  name: string;
-  slug: string;
-  url: string;
-}
 
 const Sidebar = () => {
   const [categories, setCategories] = useState<Category[]>();
@@ -30,7 +25,7 @@ const Sidebar = () => {
     }
   };
 
-  const topCat = categories?.slice(0, 5);
+  const topCat = categories?.slice(0, 19);
   useEffect(() => {
     handleCategories();
   }, []);
@@ -38,7 +33,7 @@ const Sidebar = () => {
     <Sider width="20%" style={siderStyle}>
       {topCat?.length
         ? topCat?.map((item, i) => (
-            <p className="category ellipsis" title={item?.name}>
+            <p className="category ellipsis" key={i} title={item?.name}>
               {item.name}
             </p>
           ))

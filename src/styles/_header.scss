@@ -1,5 +1,10 @@
 .header {
   border-bottom: 1px solid rgb(225, 219, 219);
+  position: fixed;
+  z-index: 1000;
+  top: 0;
+  left: 0;
+  right: 0;
 }
 
 .header-logo {
@@ -100,6 +105,9 @@
 @media (max-width: $mid-tablet) {
   .header-btns {
     display: none !important;
+  }
+  .header-links {
+    font-size: 10px;
   }
   .header-dropdown {
     display: block !important;
