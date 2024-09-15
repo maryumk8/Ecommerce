@@ -3,12 +3,23 @@ import { Product } from '../../types/Products';
 
 // Define the type for your state
 interface ProductState {
-  products: Product[]; // Replace `any` with the appropriate type for your products
+  products: Product[];
 }
+
+// Function to safely parse localStorage data
+const loadProductsFromStorage = (): Product[] => {
+  try {
+    const products = localStorage.getItem('products');
+    return products ? JSON.parse(products) : [];
+  } catch (error) {
+    console.error('Error parsing products from localStorage:', error);
+    return []; // Return an empty array if there’s an error
+  }
+};
 
 // Initialize state with data from localStorage if available
 const initialState: ProductState = {
-  products: JSON.parse(localStorage.getItem('products') || '[]'),
+  products: loadProductsFromStorage(),
 };
 
 const productSlice = createSlice({

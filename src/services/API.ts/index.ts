@@ -20,3 +20,12 @@ export const handleAllCategories = async () => {
     console.log(err);
   }
 };
+export const handleProductsByCategory = async (item: any) => {
+  try {
+    const res = await axiosInstance.get(URI.product_by_category(item?.name));
+    const data = await res.data;
+    return data;
+  } catch (err) {
+    console.log(err);
+  }
+};
