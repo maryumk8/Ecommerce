@@ -36,7 +36,6 @@ const Sidebar = () => {
     try {
       const res = await handleProductsByCategory(item);
       dispatch(setProducts(res?.products));
-      console.log({ res });
     } catch (err) {
       console.log({ err });
     }

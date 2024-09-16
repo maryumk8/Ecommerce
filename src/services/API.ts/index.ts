@@ -20,12 +20,22 @@ export const handleAllCategories = async () => {
     console.log(err);
   }
 };
-export const handleProductsByCategory = async (item: any) => {
+export const handleProductsByCategory = async ({ item }: { item: any }) => {
   try {
     const res = await axiosInstance.get(URI.product_by_category(item?.name));
     const data = await res.data;
     return data;
   } catch (err) {
     console.log(err);
+  }
+};
+export const handleSearch = async (value?: any) => {
+  try {
+    const { data } = await axiosInstance.get(URI.search(value));
+
+    return data;
+  } catch (err) {
+    console.error('Error during search:', err);
+    throw err; // Ensure errors are propagated
   }
 };
