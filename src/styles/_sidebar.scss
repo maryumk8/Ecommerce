@@ -12,11 +12,18 @@
   display: flex;
   flex-direction: column;
   gap: 12px;
-  height: fit-content !important;
+  height: calc(100vh - 324px) !important;
   margin-left: 110px;
   text-align: left;
   padding-top: 20px !important;
+  overflow: scroll;
+  overflow-y: auto;
 }
+
+.ant-layout-sider::-webkit-scrollbar {
+  display: none !important;
+}
+
 .ant-layout-sider {
   position: -webkit-sticky !important;
   position: fixed !important;

@@ -7,15 +7,6 @@ import LayoutWrapper from './components/LayoutWrapper';
 const App: React.FC = () => {
   const { t } = useTranslation();
 
-  const handleFetchProducts = async () => {
-    const data = await handleAllProducts();
-    console.log({ data });
-  };
-
-  useEffect(() => {
-    handleFetchProducts();
-  }, []);
-
   return (
     <div>
       <LayoutWrapper />
