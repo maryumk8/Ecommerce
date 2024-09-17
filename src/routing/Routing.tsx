@@ -16,6 +16,7 @@ const Routing: React.FC = () => {
           <Route key={item.name} path={item.path} element={item.element} />
         );
       })}
+      <Route path="*" element={<>Not Found</>} />
     </Routes>
   );
 };
