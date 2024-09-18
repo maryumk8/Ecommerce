@@ -3,8 +3,7 @@ import { MemoryRouter } from 'react-router-dom';
 import { getRoutes } from '../routing/Routes';
 import Routing from '../routing/Routing';
 import '@testing-library/jest-dom';
-
-import { act } from 'react'; // Explicitly importing `act` from React if needed
+import { act } from 'react';
 
 // Mocking getRoutes
 jest.mock('../routing/Routes', () => ({
