@@ -21,14 +21,19 @@ const siderStyle: React.CSSProperties = {
 
 const Sidebar = () => {
   const [categories, setCategories] = useState<Category[]>();
+  const [loading, setLoading] = useState(false);
+
   const dispatch = useDispatch();
 
   const handleCategories = async () => {
     try {
+      setLoading(true);
       const res = await handleAllCategories();
       setCategories(res);
     } catch (err) {
       console.log({ err });
+    } finally {
+      setLoading(false);
     }
   };
 
@@ -43,35 +48,46 @@ const Sidebar = () => {
 
   const handleProducts = async () => {
     try {
+      setLoading(true);
       const data = await handleAllProducts();
       dispatch(setProducts(data?.products));
       setProducts(data?.products);
     } catch (err) {
       console.log(err);
+    } finally {
+      setLoading(false);
     }
   };
 
   const topCat = categories?.slice(0, 18);
+
   useEffect(() => {
     handleCategories();
   }, []);
+
   return (
     <Sider width="20%" style={siderStyle}>
-      <p className="category ellipsis" onClick={() => handleProducts()}>
-        All Products{' '}
-      </p>
-      {topCat?.length
-        ? topCat?.map((item, i) => (
-            <p
-              className="category ellipsis"
-              key={i}
-              title={item?.name}
-              onClick={() => handleProductsByCat(item)}
-            >
-              {item.name}
-            </p>
-          ))
-        : 'Loading'}
+      {loading ? (
+        'Loading'
+      ) : (
+        <>
+          <p className="category ellipsis" onClick={() => handleProducts()}>
+            All Products
+          </p>
+          {topCat?.length
+            ? topCat?.map((item, i) => (
+                <p
+                  className="category ellipsis"
+                  key={i}
+                  title={item?.name}
+                  onClick={() => handleProductsByCat(item)}
+                >
+                  {item.name}
+                </p>
+              ))
+            : 'Empty'}
+        </>
+      )}
     </Sider>
   );
 };

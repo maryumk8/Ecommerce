@@ -55,7 +55,7 @@ describe('Header testing', () => {
     expect(signup).toBeInTheDocument();
 
     fireEvent.click(home);
-    expect(home).toHaveAttribute('href', '/home');
+    expect(home).toHaveAttribute('href', '/');
 
     fireEvent.click(about);
     expect(about).toHaveAttribute('href', '/about');
