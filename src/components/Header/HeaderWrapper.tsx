@@ -4,14 +4,16 @@ import {
   MenuOutlined,
   ShoppingCartOutlined,
 } from '@ant-design/icons';
-import { Dropdown, Layout, Space } from 'antd';
+import { Badge, Dropdown, Layout, Space } from 'antd';
 import React from 'react';
 import type { MenuProps } from 'antd';
-import { Link, useNavigate } from 'react-router-dom';
+import { Link, useLocation, useNavigate } from 'react-router-dom';
 import Logo from '../../assets/images/Logo.jpg';
 import SearchWrapper from './SearchWrapper';
+import { useSelector } from 'react-redux';
+import { RootState } from '../../redux/store';
 
-const { Header, Footer, Sider, Content } = Layout;
+const { Header } = Layout;
 
 const headerStyle: React.CSSProperties = {
   textAlign: 'center',
@@ -22,39 +24,46 @@ const headerStyle: React.CSSProperties = {
   display: 'flex',
 };
 
-const items: MenuProps['items'] = [
-  {
-    label: <SearchWrapper />,
-    key: '0',
-  },
-  {
-    type: 'divider',
-  },
-  {
-    label: (
-      <>
-        {' '}
-        <HeartOutlined />
-        Favourites
-      </>
-    ),
-    key: '1',
-  },
-
-  {
-    label: (
-      <>
-        {' '}
-        <ShoppingCartOutlined />
-        Cart
-      </>
-    ),
-    key: '3',
-  },
-];
-
 const HeaderWrapper = () => {
   const navigate = useNavigate();
+  const location = useLocation();
+  const cart = useSelector((state: RootState) => state.cartSlice);
+
+  const handleCart = () => {
+    navigate('/cart');
+  };
+
+  const home = location.pathname === '/';
+
+  const items: MenuProps['items'] = [
+    {
+      label: <SearchWrapper />,
+      key: '0',
+    },
+    {
+      type: 'divider',
+    },
+    {
+      label: (
+        <>
+          <HeartOutlined />
+          Favourites
+        </>
+      ),
+      key: '1',
+    },
+    {
+      label: (
+        <>
+          <ShoppingCartOutlined />
+          Cart
+        </>
+      ),
+      key: '3',
+      onClick: handleCart, // Now this reference is valid
+    },
+  ];
+
   return (
     <div className="header">
       <Header style={headerStyle}>
@@ -67,20 +76,30 @@ const HeaderWrapper = () => {
           />
         </div>
         <div className="header-links">
-          <Link to="/"> Home </Link>
-          <Link to="/contact"> Contact </Link>
-          <Link to="/about"> About </Link>
-          <Link to="/signup"> Sign Up </Link>
+          <Link to="/">Home</Link>
+          <Link to="/contact">Contact</Link>
+          <Link to="/about">About</Link>
+          <Link to="/signup">Sign Up</Link>
         </div>
         <div className="header-btns">
-          <SearchWrapper />
+          {home && <SearchWrapper />}
           <HeartOutlined />
-          <ShoppingCartOutlined />
-        </div>
 
+          <Badge count={cart?.cart?.length} showZero>
+            {' '}
+            <ShoppingCartOutlined
+              onClick={handleCart}
+              style={{ cursor: 'pointer' }}
+            />
+          </Badge>
+        </div>
         <div className="header-dropdown">
           <Dropdown menu={{ items }}>
-            <a onClick={(e) => e.preventDefault()}>
+            <a
+              onClick={(e: React.MouseEvent<HTMLAnchorElement>) =>
+                e.preventDefault()
+              }
+            >
               <Space>
                 <MenuOutlined />
               </Space>

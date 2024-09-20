@@ -16,6 +16,39 @@
 .text-center {
   text-align: center;
 }
+
 .text-left {
   text-align: left !important;
+}
+
+.card-flex {
+  .ant-card-body {
+    display: flex;
+    padding: 0px !important;
+  }
+}
+.grid-width {
+  width: 25%;
+}
+
+.center {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.mt {
+  margin-top: 10px;
+}
+
+.flex-end {
+  display: flex;
+  justify-content: end;
+}
+
+.cart-total {
+  .ant-card-body {
+    display: flex;
+    justify-content: space-between;
+  }
 }

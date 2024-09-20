@@ -1,6 +1,9 @@
 import React from 'react';
 import { Routes, Route } from 'react-router-dom';
 import { getRoutes } from './Routes';
+import LayoutWrapper from '../components/LayoutWrapper';
+
+const NotFound: React.FC = () => <div>Page Not Found</div>; // More descriptive component for 404
 
 const Routing: React.FC = () => {
   const routes = getRoutes();
@@ -10,13 +13,18 @@ const Routing: React.FC = () => {
       {Object.values(routes).map((item) => {
         if (!item) {
           console.error('Route item is undefined');
-          return null; // Handle undefined case
+          return null;
         }
         return (
-          <Route key={item.name} path={item.path} element={item.element} />
+          <Route
+            key={item.name}
+            path={item.path}
+            element={<LayoutWrapper>{item.element}</LayoutWrapper>}
+          />
         );
       })}
-      <Route path="*" element={<>Not Found</>} />
+      <Route path="*" element={<NotFound />} /> // Wrap NotFound with
+      LayoutWrapper
     </Routes>
   );
 };
