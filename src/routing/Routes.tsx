@@ -3,6 +3,7 @@ import About from '../components/About';
 import App from '../App';
 import Contact from '../components/Contact';
 import Signup from '../components/Signup';
+import Cart from '../components/Cart';
 
 export const getRoutes = () => {
   return {
@@ -25,6 +26,11 @@ export const getRoutes = () => {
       name: 'Signup',
       path: '/signup',
       element: <Signup />,
+    },
+    cart: {
+      name: 'Cart',
+      path: '/cart',
+      element: <Cart />,
     },
   };
 };
